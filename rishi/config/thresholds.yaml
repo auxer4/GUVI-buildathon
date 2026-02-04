@@ -1,0 +1,54 @@
+# Rishi: Scam Detection Configuration
+# Risk scoring thresholds and detector weights
+
+# Detector Weights (sum should equal 1.0)
+detector_weights:
+  linguistic: 0.30
+  behavioral: 0.25
+  link_infrastructure: 0.20
+  identity_mismatch: 0.15
+  historical: 0.10
+
+# Risk Thresholds (0-100 scam probability scale)
+risk_thresholds:
+  safe: 0
+  suspicious: 30
+  high: 70
+  confirmed: 85
+
+# Linguistic Manipulation Scores
+linguistic_thresholds:
+  urgency_score_weight: 0.35
+  fear_appeal_weight: 0.30
+  authority_impersonation_weight: 0.20
+  reward_baiting_weight: 0.15
+
+# Behavioral Pattern Scores
+behavioral_thresholds:
+  message_frequency_window_minutes: 10
+  high_frequency_threshold: 5  # messages in window
+  instruction_repetition_threshold: 0.6
+  script_rigidity_threshold: 0.7
+  query_ignore_threshold: 0.8
+
+# Link & Infrastructure Scores
+link_thresholds:
+  domain_age_days_new: 30
+  url_entropy_threshold: 4.0
+  lookalike_similarity_threshold: 0.85
+  suspicious_tld_patterns:
+    - ".tk"
+    - ".ml"
+    - ".ga"
+    - ".cf"
+
+# Identity Mismatch Scores
+identity_thresholds:
+  claim_evidence_mismatch_threshold: 0.7
+  domain_brand_inconsistency_threshold: 0.75
+  credential_anomaly_threshold: 0.8
+
+# Handoff Trigger
+handoff_config:
+  trigger_risk_level: "confirmed"
+  trigger_probability: 85
