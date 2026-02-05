@@ -33,6 +33,7 @@ from ..detectors.identity_mismatch import IdentityMismatchDetector
 from ..detectors.historical import HistoricalPatternDetector
 from ..scoring.risk_fusion import RiskFusionEngine
 from ..handoff.handoff_router import HandoffRouter
+from shared.event_bus import get_event_bus
 
 logger = logging.getLogger(__name__)
 
@@ -43,7 +44,16 @@ _link_detector = LinkIntelligenceDetector()
 _identity_detector = IdentityMismatchDetector()
 _historical_detector = HistoricalPatternDetector()
 _fusion_engine = RiskFusionEngine()
-_handoff_router = HandoffRouter()
+_handoff_router = None  # Will be initialized with event_bus
+
+
+def _get_handoff_router():
+    """Get or create handoff router with event_bus injection."""
+    global _handoff_router
+    if _handoff_router is None:
+        event_bus = get_event_bus()
+        _handoff_router = HandoffRouter(event_bus=event_bus)
+    return _handoff_router
 
 
 def create_detect_router() -> APIRouter:
@@ -112,7 +122,8 @@ def create_detect_router() -> APIRouter:
 
             # Check if handoff is needed
             if detection_result.handoff_triggered:
-                handoff_event = _handoff_router.process_detection_result(
+                handoff_router = _get_handoff_router()
+                handoff_event = handoff_router.process_detection_result(
                     detection_result, detector_input
                 )
                 logger.warning(

@@ -1,0 +1,18 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-python.vscode-pylint",
+    "ms-python.black-formatter",
+    "redhat.vscode-yaml",
+    "eamodio.gitlens",
+    "ms-azuretools.vscode-docker",
+    "ms-vscode-remote.remote-containers",
+    "littlefoxteam.vscode-python-test-adapter",
+    "EditorConfig.EditorConfig",
+    "VisualStudioExptTeam.vscodeintellicode",
+    "ms-vscode.makefile-tools",
+    "charliermarsh.ruff",
+    "ms-python.debugpy"
+  ]
+}

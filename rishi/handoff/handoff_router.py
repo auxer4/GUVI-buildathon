@@ -32,9 +32,11 @@ class HandoffRouter:
 
         Args:
             event_bus: Reference to shared event_bus for emitting events.
-                      TODO: Inject when event_bus is available
+                      Injected from the detection API for event publishing.
         """
         self.event_bus = event_bus
+        if event_bus is None:
+            logger.warning("HandoffRouter initialized without event_bus; events will not be published")
 
     def process_detection_result(
         self,
@@ -113,12 +115,12 @@ class HandoffRouter:
 
     def _emit_event(self, event: ScamConfirmedEvent) -> None:
         """
-        Emit event to event_bus.
+        Emit event to event_bus for inter-agent communication.
 
         Args:
             event: ScamConfirmedEvent to emit
 
-        TODO: Implement when shared/event_bus.py is available
+        This signals the honeypot agent to engage with the scammer.
         """
         if self.event_bus is None:
             logger.warning("event_bus not available; event not emitted")
@@ -126,11 +128,37 @@ class HandoffRouter:
             return
 
         try:
-            # TODO: Actual event_bus implementation
-            # self.event_bus.emit("SCAM_CONFIRMED", event)
-            logger.debug(f"Event emitted: {event.event_type}")
+            from shared.event_bus import Event, EventType
+            from datetime import datetime
+
+            # Convert ScamConfirmedEvent to Event for event_bus
+            bus_event = Event(
+                event_type=EventType.SCAM_CONFIRMED,
+                conversation_id=event.conversation_id,
+                timestamp=datetime.utcnow(),
+                payload=event.model_dump(),
+                source_service="scam_detection",
+                metadata=event.metadata,
+            )
+
+            # Emit event asynchronously
+            import asyncio
+            try:
+                loop = asyncio.get_event_loop()
+                if loop.is_running():
+                    # If we're already in an async context, create task
+                    loop.create_task(self.event_bus.emit(bus_event))
+                else:
+                    # Otherwise run it directly
+                    loop.run_until_complete(self.event_bus.emit(bus_event))
+            except RuntimeError:
+                # No event loop; try to create one
+                asyncio.run(self.event_bus.emit(bus_event))
+
+            logger.info(f"Event emitted: {event.event_type} for {event.conversation_id}")
+
         except Exception as e:
-            logger.error(f"Error emitting event: {e}")
+            logger.error(f"Error emitting event: {e}", exc_info=True)
 
 
 class ConversationHandoffMetadata:

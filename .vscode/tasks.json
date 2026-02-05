@@ -1,0 +1,118 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "FastAPI: Run Dev Server",
+      "type": "shell",
+      "command": "python",
+      "args": ["-m", "uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"],
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^(WARNING:|ERROR:).*$",
+          "file": 1,
+          "location": 2,
+          "message": 3
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^.*Uvicorn running.*",
+          "endsPattern": "^.*Application startup complete.*"
+        }
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+    {
+      "label": "Tests: Run All",
+      "type": "shell",
+      "command": "python",
+      "args": ["-m", "pytest", "shreyas/tests", "-v", "--tb=short", "--cov=shreyas"],
+      "group": {
+        "kind": "test"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Lint: Flake8",
+      "type": "shell",
+      "command": "python",
+      "args": ["-m", "flake8", ".", "--max-line-length=120", "--extend-ignore=E203,W503"],
+      "group": {
+        "kind": "test"
+      },
+      "presentation": {
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Format: Black",
+      "type": "shell",
+      "command": "python",
+      "args": ["-m", "black", ".", "--line-length=120"],
+      "group": {
+        "kind": "test"
+      },
+      "presentation": {
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Type Check: Mypy",
+      "type": "shell",
+      "command": "python",
+      "args": ["-m", "mypy", "rishi", "saachi", "shreyas", "--ignore-missing-imports"],
+      "group": {
+        "kind": "test"
+      },
+      "presentation": {
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Imports: Sort with isort",
+      "type": "shell",
+      "command": "python",
+      "args": ["-m", "isort", ".", "--profile=black"],
+      "group": {
+        "kind": "test"
+      },
+      "presentation": {
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Setup: Create Virtual Environment",
+      "type": "shell",
+      "command": "python",
+      "args": ["-m", "venv", "venv"],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Setup: Install Dependencies",
+      "type": "shell",
+      "command": "python",
+      "args": ["-m", "pip", "install", "-r", "requirements.txt"],
+      "dependsOn": ["Setup: Create Virtual Environment"],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always"
+      }
+    }
+  ]
+}

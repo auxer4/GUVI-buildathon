@@ -1,0 +1,13 @@
+2026-02-05 21:47:29 - rishi.detectors.historical - INFO - Historical detector initialized
+2026-02-05 21:47:29 - rishi.scoring.risk_fusion - INFO - Risk Fusion Engine initialized with weights: {'linguistic': 0.3, 'behavioral': 0.25, 'link_infrastructure': 0.2, 'identity_mismatch': 0.15, 'historical': 0.1}
+2026-02-05 21:53:03 - rishi.detectors.historical - INFO - Historical detector initialized
+2026-02-05 21:53:03 - rishi.scoring.risk_fusion - INFO - Risk Fusion Engine initialized with weights: {'linguistic': 0.3, 'behavioral': 0.25, 'link_infrastructure': 0.2, 'identity_mismatch': 0.15, 'historical': 0.1}
+2026-02-05 21:57:55 - rishi.detectors.historical - INFO - Historical detector initialized
+2026-02-05 21:57:55 - rishi.scoring.risk_fusion - INFO - Risk Fusion Engine initialized with weights: {'linguistic': 0.3, 'behavioral': 0.25, 'link_infrastructure': 0.2, 'identity_mismatch': 0.15, 'historical': 0.1}
+2026-02-05 21:57:55 - main - INFO - Successfully imported Rishi detection module
+2026-02-05 22:00:22 - rishi.detectors.historical - INFO - Historical detector initialized
+2026-02-05 22:00:22 - rishi.scoring.risk_fusion - INFO - Risk Fusion Engine initialized with weights: {'linguistic': 0.3, 'behavioral': 0.25, 'link_infrastructure': 0.2, 'identity_mismatch': 0.15, 'historical': 0.1}
+2026-02-05 22:00:22 - main - INFO - Successfully imported Rishi detection module
+2026-02-05 22:03:25 - rishi.detectors.historical - INFO - Historical detector initialized
+2026-02-05 22:03:25 - rishi.scoring.risk_fusion - INFO - Risk Fusion Engine initialized with weights: {'linguistic': 0.3, 'behavioral': 0.25, 'link_infrastructure': 0.2, 'identity_mismatch': 0.15, 'historical': 0.1}
+2026-02-05 22:03:25 - main - INFO - Successfully imported Rishi detection module
