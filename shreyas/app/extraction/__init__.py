@@ -1,0 +1,1 @@
+from extraction.regex_extractors import extract_entities

@@ -8,7 +8,11 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
+<<<<<<< HEAD
 set VIRTUAL_ENV=C:\Users\samya\OneDrive\Desktop\ai hackathon\GUVI-buildathon\venv
+=======
+set VIRTUAL_ENV=D:\College\Hackathon\venv
+>>>>>>> 04d01355 (Person 4: Redis listener and event pipeline)
 
 if not defined PROMPT set PROMPT=$P$G
 

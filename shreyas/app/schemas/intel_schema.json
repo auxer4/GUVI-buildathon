@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Extracted Intelligence Entity Schema",
+  "type": "object",
+  "required": [
+    "entity_id",
+    "type",
+    "value",
+    "confidence",
+    "source_event_id",
+    "extracted_at"
+  ],
+  "properties": {
+    "entity_id": {
+      "type": "string",
+      "description": "Unique entity identifier"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "UPI_ID",
+        "URL",
+        "PHONE_NUMBER",
+        "EMAIL",
+        "BANK_ACCOUNT",
+        "CRYPTO_WALLET"
+      ]
+    },
+    "value": {
+      "type": "string",
+      "description": "Extracted value"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "source_event_id": {
+      "type": "string",
+      "description": "Event from which entity was extracted"
+    },
+    "extracted_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Extraction & validation metadata"
+    }
+  },
+  "additionalProperties": false
+}

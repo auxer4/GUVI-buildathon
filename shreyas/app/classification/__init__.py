@@ -1,0 +1,1 @@
+from classification.scam_classifier import classify_scam

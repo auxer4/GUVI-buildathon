@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Scam Intelligence Engine - Python Dependencies
 
 # Core Framework
@@ -32,3 +33,11 @@ isort==5.13.2
 # openai==1.3.0
 # transformers==4.35.0
 # torch==2.1.0
+=======
+fastapi
+uvicorn
+redis
+pydantic
+python-dotenv
+fakeredis
+>>>>>>> 04d01355 (Person 4: Redis listener and event pipeline)
